@@ -1,2 +1,2 @@
 # multisync-crawler
-npm install then npm start to save the screenshot
+npm install then change the url and run npm start to save the screenshot
