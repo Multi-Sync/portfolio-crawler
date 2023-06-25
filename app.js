@@ -22,8 +22,14 @@ const captureBehanceScreenshots = async (url, path, config = {}) => {
         console.log(`Screenshots captured for ${url}`);
         // get all project links
         const projectLinks = await page.evaluate(() => {
-            const links = document.querySelectorAll("a.ProjectCoverNeue-coverLink-U39");
-            return Array.from(links).map((link) => link.href);
+            const links = document.querySelectorAll("a");
+            // get all project links that has href starting with /gallery/
+            const filteredLinks = Array.from(links)
+                .filter((link) => link.href.startsWith("https://www.behance.net/gallery/"))
+                .map((link) => link.href);
+            // remove duplicates
+            const uniqueLinks = [...new Set(filteredLinks)];
+            return uniqueLinks;
         });
         // capture screenshots for projects
         for (let i = 0; i < screenshotCount; i++) {
