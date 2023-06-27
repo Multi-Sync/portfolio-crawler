@@ -1,7 +1,7 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 
-const captureBehanceScreenshots = async (url, path, config = {}) => {
+const captureBehanceScreenshots = async (url, path, config = { screenshotCount }) => {
     const defaultConfig = {
         screenshotCount: 3,
     };
@@ -44,7 +44,7 @@ const captureBehanceScreenshots = async (url, path, config = {}) => {
         console.error(`Failed to capture screenshot for ${url}: ${err}`);
     }
 };
-const captureGithubScreenshots = async (url, path, config = {}) => {
+const captureGithubScreenshots = async (url, path, config = { screenshotCount, sortBy }) => {
     const defaultConfig = {
         screenshotCount: 3,
         sortBy: "stars"
